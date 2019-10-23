@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Demo</title>
+</head>
+
+<body>
+    <div class="main">
+        <div id="columns">
+            <div class="column" draggable="true">
+                <img src="https://www.qiyuesuo.com/img/download/java.png" alt="" width="50">
+            </div>
+            <div class="column" draggable="true">
+                <header>Bbbbb</header>
+            </div>
+            <div class="column" draggable="true">
+                <header>C</header>
+            </div>
+            <div class="column" draggable="true">
+                <header>D</header>
+            </div>
+            <div class="column" draggable="true">
+                <header>E</header>
+            </div>
+        </div>
+
+        <div id="drag-container"></div>
+    </div>
+
+    <style>
+        ul {
+            list-style-type: none;
+        }
+
+        [draggable='true'] {
+            color: white;
+            font-weight: bold;
+            background-color: #00CDFF;
+            text-align: center;
+            padding: 10px;
+            width: 100px;
+            margin: 5px;
+        }
+
+        .draggingElem {
+            background-color: orange;
+            pointer-events: none;
+            list-style-type: none;
+        }
+
+        .draggingElem img {}
+    </style>
+
+    <script>
+        var isIE = typeof document.createElement("span").dragDrop === "function";
+
+        var draggableElement = document.querySelectorAll('[draggable="true"]');
+
+        [].forEach.call(draggableElement, addDnDHandlers);
+
+        function addDnDHandlers(elem) {
+            customDragImage.call(elem, {
+                offsetX: 50,
+                offsetY: 50,
+                createDragImage: function (elem) {
+                    var nodeElem = elem.cloneNode(true);
+                    nodeElem.innerHTML = "I'm a custom node from " + elem.innerHTML;
+                    nodeElem.className = "draggingElem";
+                    return nodeElem;
+                }
+            });
+            elem.addEventListener("dragstart", function (e) {
+                e.dataTransfer.setData("Text", "Foo");
+            });
+        }
+
+        function customDragImage(options) {
+            var offsetX = options.offsetX || 0,
+                offsetY = options.offsetY || 0;
+
+            var createDragImage = function ($node, x, y) {
+                var dragNode = options.createDragImage($node);
+
+                var top = Math.max(0, y - offsetY) + "px";
+                var left = Math.max(0, x - offsetX) + "px";
+
+                console.log('top:', top);
+                console.log('left:', left);
+
+                dragNode.style.top = top;
+                dragNode.style.left = left;
+                dragNode.style.position = "absolute";
+                dragNode.style.pointerEvents = "none";
+                document.body.appendChild(dragNode);
+
+                setTimeout(function () {
+                    document.body.removeChild(dragNode);
+                }, 0);
+                return dragNode;
+            };
+            //if (isIE) {
+                this.addEventListener("mousedown", function (e) {
+                    var DnDNode = createDragImage(this, e.pageX, e.pageY);
+                    DnDNode.dragDrop();
+
+                    console.log('e.pageX, e.pageY:', e.pageX, e.pageY);
+                });
+            //}
+
+            this.addEventListener("dragstart", function (e) {
+                var dt = e.dataTransfer;
+                if (typeof dt.setDragImage === "function") {
+                    console.log('this:', this);
+                    var node = createDragImage(this, e.pageX, e.pageY);
+                    dt.setDragImage(node, offsetX, offsetY);
+                }
+            });
+
+            this.addEventListener("drag", function (e) {
+                console.log('e', e);
+            });
+
+
+            return this;
+        }
+    </script>
+</body>
+
+</html>

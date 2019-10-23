@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+
+        <style>
+            .test {
+                width: 400px;
+                height: 100px;
+                background-color: #ccc;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="test" class="test" contenteditable="true"></div>
+
+        <div class="test" contenteditable="true"></div>
+
+        <script>
+            (function() {
+                var $box = document.getElementById("test");
+
+                $box.addEventListener('compositionstart', function(e) {
+                    e.srcElement.setAttribute('composition', true);
+                });
+
+                $box.addEventListener('compositionend', function(e) {
+                    e.srcElement.setAttribute('composition', false);
+                });
+
+                $box.addEventListener('keyup', function(e) {
+                    if (this.getAttribute('composition') == 'true') return;
+
+                    console.log(e); //DOMSubtreeModified
+                });
+            })();
+        </script>
+    </body>
+</html>

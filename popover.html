@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <!-- import CSS -->
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"
+        />
+    </head>
+    <body>
+        <div id="app">
+            <el-button @click="visible = true">Button</el-button>
+            <el-dialog :visible.sync="visible" title="Hello world">
+                <p>Try Element</p>
+            </el-dialog>
+
+            <ul class="el-dropdown-menu">
+                <li tabindex="-1" class="el-dropdown-menu__item" v-for="option in paramOption" @click="addParam(option.type)">
+                    {{ option.name }}
+                </li>
+            </ul>
+
+            <el-popover
+                ref="click"
+                placement="top"
+                title="标题"
+                width="200"
+                trigger="click"
+                content="奥术大师大所多"
+            >
+            </el-popover>
+
+            <el-button id="aaa" type="text">aaaaaaaaaaaaaa</el-button>
+
+            <el-button id="bbb" type="text" click="changePop">bbb</el-button>
+        </div>
+    </body>
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: function() {
+                return { visible: false };
+            },
+            methods: {
+                // test
+                changePop() {
+                    console.log(this.$refs.click);
+
+                    this.$refs.click.showPopper = true;
+                    this.$refs.click.referenceElm = document.getElementById(
+                        "aaa"
+                    );
+                }
+            }
+        });
+    </script>
+</html>
