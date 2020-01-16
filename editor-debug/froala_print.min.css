@@ -1,0 +1,82 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+li,
+ol,
+ul {
+  list-style: none;
+}
+
+/* 图片参数基础样式 */
+.picture-param {
+  position: relative;
+  vertical-align: text-bottom;
+}
+
+.picture-param .fr-fic {
+  margin-bottom: 0;
+}
+
+.picture-param::before {
+  content: attr(data-img-title);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  width: 100%;
+  padding: 0 12%;
+  text-align: center;
+  line-height: 1.1em;
+  text-indent: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  /*! autoprefixer: ignore next */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.picture-param[data-display-type='fr-dii'] {
+  display: inline-block;
+  float: none;
+  vertical-align: bottom;
+  margin-left: 5px;
+  margin-right: 5px;
+  max-width: calc(90%);
+}
+
+
+.picture-param[data-display-type='fr-dii'][data-align-type='fr-fil'] {
+  float: left;
+  margin: 0 5px 0 0;
+  max-width: calc(95%);
+}
+
+.picture-param[data-display-type='fr-dib'] {
+  float: none;
+  display: block;
+  margin: 0 auto;
+  vertical-align: top;
+}
+
+
+.picture-param[data-display-type='fr-dib'][data-align-type='fr-fil'] {
+  margin-left: 0;
+  text-align: left;
+}
+
+
+.picture-param[data-display-type='fr-dib'][data-align-type='fr-fir'] {
+  margin-right: 0;
+  text-align: right;
+}
