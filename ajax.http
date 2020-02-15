@@ -1,0 +1,18 @@
+###
+GET https://plm.qiyuesuo.me/api/get/user
+Cookie: PLMID=XBhxF3yQ3SEYA9IxXJNl6k6YDHthLbt3IO5CCgEiQgr_PmHEGGXmn0JokuVsVLOYg_z4MZu9b3hVGVvO-QrHosGLuhdFqvHC3nQZev90MvAuORuN_lP5MgLJCC1zw0gRGkCbp9dFVVh2byxiC8fK5BfWIefeWv9Gtrvt6OWWufcxuXHb_bEfZQi0ghdySiRsnMttkEte63m4AHk45tssMXVPJEw-YawEgYrUo4YfS5HcwUiPpvQFKc-x2_aTCjoB3lI7xkPU-VqQRBylQMNTPC4hl8V_idPWCSrpK48FP_vczyTP69NNcCgnTNjQj8k7V_C5GiGdpmbzffH3T-4va-NAlW9mBBpRVV_UUEwHyqJde6OA5uLrxcfR39viG9DlRrgjnE9PRyCAA8e8PLmiTA==
+
+
+###
+GET http://privapp.qiyuesuo.me/user HTTP/1.1
+Cookie: SID=8a29c24b-1180-4161-b718-cab93a47c91e; QID=da2e7624-3fda-4176-8869-fb07420cc4cb
+
+
+### plm释放项目环境
+POST https://plm.qiyuesuo.me/api/builder/destroy HTTP/1.1
+content-type: application/json
+Cookie: PLMID=XBhxF3yQ3SEYA9IxXJNl6k6YDHthLbt3IO5CCgEiQgr_PmHEGGXmn0JokuVsVLOYg_z4MZu9b3hVGVvO-QrHosGLuhdFqvHC3nQZev90MvAuORuN_lP5MgLJCC1zw0gRGkCbp9dFVVh2byxiC8fK5BfWIefeWv9Gtrvt6OWWufcxuXHb_bEfZQi0ghdySiRsnMttkEte63m4AHk45tssMXVPJEw-YawEgYrUo4YfS5HcwUiPpvQFKc-x2_aTCjoB3lI7xkPU-VqQRBylQMNTPC4hl8V_idPWCSrpK48FP_vczyTP69NNcCgnTNjQj8k7V_C5GiGdpmbzffH3T-4va-NAlW9mBBpRVV_UUEwHyqJde6OA5uLrxcfR39viG9DlRrgjnE9PRyCAA8e8PLmiTA==
+
+{
+    "projectKey": "XYYYY"
+}
