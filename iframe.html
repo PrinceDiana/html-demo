@@ -19,17 +19,32 @@
         <p>--正文--</p>
         <iframe
             id="myiframe"
-            src="http://127.0.0.1:5501/xhr.html"
+            src="http://127.0.0.1:5501/demo.html"
             frameborder="0"
         ></iframe>
+
+        <embed src="http://127.0.0.1:5501/demo.html" id="myEmbed" />
         <p>--正文--</p>
 
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"
+        ></script>
 
         <script>
             $(function() {
                 var ifm = document.getElementById("myiframe");
                 ifm.height = document.documentElement.clientHeight;
+
+                console.log("iframe contentWindow: ", ifm.contentWindow.print);
+                console.log(
+                    "embed contentWindow:",
+                    document.getElementById("myEmbed").contentWindow
+                );
+
+                setTimeout(() => {
+                    ifm.contentWindow.print();
+                }, 2000)
             });
         </script>
     </body>
